@@ -1,0 +1,51 @@
+A linked list is a data structure used for storing collections of data. A linked list has the following
+properties.
+
+• Successive elements are connected by pointers
+• The last element points to NULL
+• Can grow or shrink in size during execution of a program
+• Can be made just as long as required (until systems memory exhausts)
+• Does not waste memory space (but takes some extra memory for pointers). It
+allocates memory as list grows.
+
+
+Disadvantages of Arrays
+• Preallocates all needed memory up front and wastes memory space for indices in the
+array that are empty.
+• Fixed size: The size of the array is static (specify the array size before using it).
+• One block allocation: To allocate the array itself at the beginning, sometimes it may
+not be possible to get the memory for the complete array (if the array size is big).
+• Complex position-based insertion: To insert an element at a given position, we may
+need to shift the existing elements. This will create a position for us to insert the
+new element at the desired position. If the position at which we want to add an
+element is at the beginning, then the shifting operation is more expensive.
+
+
+Dynamic array (also called as growable array, resizable array, dynamic table, or array list) is a
+random access, variable-size list data structure that allows elements to be added or removed.
+One simple way of implementing dynamic arrays is to initially start with some fixed size array.
+As soon as that array becomes full, create the new array double the size of the original array.
+Similarly, reduce the array size to half if the elements in the array are less than half.
+
+
+Arrays are defined as contiguous blocks of memory, and so any array element will be physically near its neighbors. This
+greatly benefits from modern CPU caching methods.
+
+Circular linked lists are useful, ex: when several processes are using the same computer resource (CPU) for the same
+amount of time, we have to assure that no process accesses the resource before all other
+processes do (round robin algorithm).
+
+
+A Memory-efficient Doubly Linked List
+The ptrdiff pointer field contains the difference between the pointer to the next node and the
+pointer to the previous node. The pointer difference is calculated by using exclusive-or (⊕)
+operation.
+
+ptrdiff = pointer to previous node ⊕ pointer to next node.
+
+For the example above, let us assume that we are at C node and want to move to B. We know that
+C’s ptrdiff is defined as B ⊕ D. If we want to move to B, performing ⊕ on C’s ptrdiff with D
+would give B. This is due to the fact that
+(B ⊕ D) ⊕ D = B(since, D ⊕ D= 0)
+Similarly, if we want to move to D, then we have to apply ⊕ to C’s ptrdiff with B to give D.
+(B ⊕ D) ⊕ B = D (since, B © B=0)
